@@ -15,7 +15,7 @@ body {
     background: white;
 }
 
-.word {
+#word {
     font-size: 10rem;
     padding: 7rem;
 }
@@ -41,4 +41,28 @@ body {
 
 #correct {
     background-image: linear-gradient(to bottom right, #00f4ca, #00d4ff);
+}
+
+#repeatButton {
+    display: block;
+    margin: 2rem;
+    background: purple;
+    color: white;
+    font-size: 2rem;
+}
+
+#repeatButton.hide {
+    display: none;
+}
+
+.red {
+    background: red;
+}
+
+
+
+
+#tempBox {
+    width: 80%;
+    word-wrap: break-word;
 }
