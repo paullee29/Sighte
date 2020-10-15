@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: white;
+}
+
+.word {
+    font-size: 10rem;
+    padding: 7rem;
+}
+
+#wordButtons {
+    margin: 3rem;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+    padding: 1.5rem 2rem;
+    border-radius: 5px;
+    border: 0;
+}
+
+#incorrect {
+    background-image: linear-gradient(to bottom right, #d263cb, #ff9aa5);
+}
+
+#correct {
+    background-image: linear-gradient(to bottom right, #00f4ca, #00d4ff);
+}
