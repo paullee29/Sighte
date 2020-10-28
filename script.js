@@ -47,13 +47,16 @@ if (annyang) {
     var commands = {
 
         '*input': function (input) {
+            console.log(word);
+            console.log("Listened to word: "+ input);
             if (input == word) {
-                alert("correct");
+                // alert("correct");
                 document.getElementById('correct').click();
                 word = nextWord[0];
             } else {
-                alert("incorect");
+                // alert("incorect");
                 document.getElementById('incorrect').click();
+                word = nextWord[0];
             }
 
         }
