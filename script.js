@@ -91,7 +91,7 @@ if (annyang) {
 function wordChecker (word, inputWords) {
     
     console.log("Listened to word: "+ inputWords);
-    if (inputWords.includes(word)) {
+    if (inputWords.includes(word.toLowerCase())) {
         // alert("correct");
         console.log("correct");
         document.getElementById('correct').click();
