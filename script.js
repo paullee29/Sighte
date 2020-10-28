@@ -38,37 +38,76 @@ currentWord.innerHTML = `${firstWord}`;
 
 let nextWord = "";
 
+let inputWords = [];
+let word = firstWord[0];
+
+
 if (annyang) {
-    console.log("hello");
-    let word = firstWord;
+    console.log("Starting AnnYang");
     
-    console.log(word);
+    
+    // console.log(word);
     // Let's define a command.
+
+    
     var commands = {
 
-        '*input': function (input) {
-            console.log(word);
-            console.log("Listened to word: "+ input);
-            if (input == word) {
-                // alert("correct");
-                document.getElementById('correct').click();
-                word = nextWord[0];
-            } else {
-                // alert("incorect");
-                document.getElementById('incorrect').click();
-                word = nextWord[0];
-            }
+        '*input' : function () {
 
+            annyang.addCallback('resultMatch', function(userSaid, commandText, phrases){
+                
+                console.log("Starting Callback");
+                
+                inputWords = phrases;
+                console.log("Potential Words: " + inputWords);
+                for (var i = 0; i < inputWords.length; i++) {
+                    inputWords[i] = inputWords[i].toLowerCase();
+                } 
+                // console.log("Displayed: " + word);
+                // console.log("Listened to word: "+ inputWords);
+                annyang.removeCallback();
+                annyang.abort();
+                wordChecker(word, inputWords);
+                
+            });
+            console.log("exiting callback");
+            
         }
     };
-    
+
+
 
     // Add our commands to annyang
+
     annyang.addCommands(commands);
+
 
     // Start listening.
     annyang.start();
+
+
 }
+
+function wordChecker (word, inputWords) {
+    
+    console.log("Listened to word: "+ inputWords);
+    if (inputWords.includes(word)) {
+        // alert("correct");
+        console.log("correct");
+        document.getElementById('correct').click();
+
+    } else {
+        // alert("incorect");
+        console.log("incorrect");
+        document.getElementById('incorrect').click();
+
+    }
+    word = nextWord[0];
+    annyang.resume();
+
+}
+
+
 
 correctButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -79,6 +118,7 @@ correctButton.addEventListener('click', (e) => {
 
         //tempBox.innerHTML = `${tempWords}`;
         tempBox.innerHTML = `${tempWords.length}`;
+        word = nextWord[0];
 
    
 
@@ -110,6 +150,7 @@ incorrectButton.addEventListener('click', (e) => {
     //tempBox.innerHTML = `${tempWords}`;
     tempBox.innerHTML = `${tempWords.length}`;
     nextword = tempWords.splice(Math.floor(Math.random() * tempWords.length), 1);
+    word = nextWord[0];
 });
 
 startOver.addEventListener('click', (e) => {
