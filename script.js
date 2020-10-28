@@ -36,40 +36,51 @@ let firstWord = tempWords.splice(Math.floor(Math.random() * tempWords.length), 1
 
 currentWord.innerHTML = `${firstWord}`;
 
+let nextWord = "";
+
+if (annyang) {
+    console.log("hello");
+    let word = firstWord;
+    
+    console.log(word);
+    // Let's define a command.
+    var commands = {
+
+        '*input': function (input) {
+            if (input == word) {
+                alert("correct");
+                document.getElementById('correct').click();
+                word = nextWord[0];
+            } else {
+                alert("incorect");
+                document.getElementById('incorrect').click();
+            }
+
+        }
+    };
+    
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening.
+    annyang.start();
+}
+
 correctButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     if (tempWords.length > 0) {
-        let nextWord = tempWords.splice(Math.floor(Math.random() * tempWords.length), 1);
+        nextWord = tempWords.splice(Math.floor(Math.random() * tempWords.length), 1);
         currentWord.innerHTML = `${nextWord}`;
 
         //tempBox.innerHTML = `${tempWords}`;
         tempBox.innerHTML = `${tempWords.length}`;
 
    
-        if (annyang) {
-            console.log("hello");
-            let word = nextWord[0];
-            console.log(word);
-            // Let's define a command.
-            var commands = {
-    
-                '*input': function (input) {
-                    if (input == word) {
-                        alert("correct");
-                    } else {
-                        alert("incorect");
-                    }
 
-                }
-            };
             
-            // Add our commands to annyang
-            annyang.addCommands(commands);
-            
-            // Start listening.
-            annyang.start();
-        }
+
 ////////////////
 
 //////////////////
