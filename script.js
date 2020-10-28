@@ -109,6 +109,7 @@ incorrectButton.addEventListener('click', (e) => {
 
     //tempBox.innerHTML = `${tempWords}`;
     tempBox.innerHTML = `${tempWords.length}`;
+    nextword = tempWords.splice(Math.floor(Math.random() * tempWords.length), 1);
 });
 
 startOver.addEventListener('click', (e) => {
